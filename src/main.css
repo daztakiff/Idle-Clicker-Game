@@ -1,0 +1,21 @@
+.inventory{
+    position: fixed;
+    bottom: 0;
+    width: 100%
+}
+
+.library{
+    display: none;
+}
+
+.sellButtons{
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    margin-bottom: 10px;
+}
+
+button{
+    background-color: white;
+    font-size: 18px;
+
+}
