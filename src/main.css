@@ -1,13 +1,14 @@
-.column {
+.column2, .column3 {
     float: left;
+    height: 100%;
+}
+
+.column2{
     width: 50%;
 }
 
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+.column3{
+    width: 33.333%;
 }
 
 .sellButtons{
@@ -45,7 +46,7 @@
 }
 
 button {
-    background-color: #4CAF50; /* Green */
+    background-color: #747474;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -55,8 +56,39 @@ button {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    position: relative;
+    border-radius: 15px;
   }
 
 button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.circle1, .circle2, .circle3{
+    height: 25em;
+    width: 25em;
+    overflow: hidden;
+    position: absolute;
+}
+.circle1:after, .circle2:after, .circle3:after{
+    content: '';
+    width: 142%;
+    height: 142%;
+    position: absolute;
+    border:.1875em solid #0F1C3F;
+    border-radius: 50%;
+    box-shadow: .375em .375em 0 0 rgba(15, 28, 63, .125);
+    transform: translate(-50%,-50%);
+}
+
+.circle1:after{
+    background: #FFE400;
+}
+
+.circle2:after{
+    background: #FF652F;
+}
+
+.circle3:after{
+    background: #14A76C;
 }

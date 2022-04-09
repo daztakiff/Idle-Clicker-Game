@@ -1,21 +1,29 @@
-
-
 $(document).ready(function () {
     var souls = 0;
     var soulPrice = 1;
+    var soulPlus = 1;
+    var money = 0;
+    var knowledge = 0;
+    var knowledgePlus = 1;
+
     var soulPlusLibraryPass = 1;
-    var soulPlusLibrarian = 2;
-    var soulPlusLibrary = 4;
+    var soulPlusLibrarian = 20;
+    var soulPlusLibrary = 90;
+
     var numLibraryPass = 0;
     var numLibrarian = 0;
     var numLibrary = 0;
-    var libraryPassPrice = 50;
-    var librarianPrice = 100;
-    var libraryPrice = 200;
+
+    var libraryPassPrice = 0;
+    var librarianPrice = 60;
+    var libraryPrice = 720;
+
+    var LibraryPassMul = 1;
+    var LibrarianMul = 1;
+    var LibraryMul = 1;
+
     var spoffify = false;
-    var knowledge = 0;
-    var knowledgePlus = 1;
-    var money = 0;
+
     var menu = switchMenu("main");
 
     updateMarket();
@@ -28,7 +36,7 @@ $(document).ready(function () {
     }, 1000);
 
     $("#homicide").click(function() {
-        souls++;
+        souls += soulPlus;
         updateMarket();
     });
     
@@ -82,8 +90,7 @@ $(document).ready(function () {
 
     function updateMarket() {
         changeInventory();
-        changeEcon();
-        changeSpoffify();
+        updateButtonStatus();
     }
 
     function changeInventory() {
@@ -98,7 +105,7 @@ $(document).ready(function () {
         $("#money").html("You now have $" + money + ".");
     }
 
-    function changeEcon() {
+    function updateButtonStatus() {
 
         if (souls > 0) {
             $("#sellAll").removeClass('disabled');
@@ -136,10 +143,6 @@ $(document).ready(function () {
             $("#library").addClass('disabled');
         }
 
-    }
-
-    function changeSpoffify() {
-
         if (money >= 50 && !spoffify) {
             $("#buyAccount").css("display", "block");
         } else {
@@ -161,7 +164,6 @@ $(document).ready(function () {
             $("#buySoftware").css("display", "none");
             $("#buyScript").css("display", "none");
         }
-
     }
 
     $("#toStudio").click(function () {
