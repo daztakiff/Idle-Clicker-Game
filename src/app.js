@@ -1,60 +1,90 @@
-$(document).ready(function() {
+
+
+$(document).ready(function () {
     var souls = 0;
     var soulPrice = 1;
+    var soulPlusLibraryPass = 1;
+    var soulPlusLibrarian = 2;
+    var soulPlusLibrary = 4;
+    var numLibraryPass = 0;
+    var numLibrarian = 0;
+    var numLibrary = 0;
+    var libraryPassPrice = 50;
+    var librarianPrice = 100;
+    var libraryPrice = 200;
+    var spoffify = false;
     var knowledge = 0;
-    var soulPlus = 1;
-    var money = 0;
     var knowledgePlus = 1;
-    var autoLogPLus = 0;
-    var hitmanPrice = 100;
-    var logPrice = 1;
+    var money = 0;
     var menu = switchMenu("main");
 
+    updateMarket();
+
+    setInterval(function(){
+        souls += soulPlusLibraryPass * numLibraryPass;
+        souls += soulPlusLibrarian * numLibrarian;
+        souls += soulPlusLibrary * numLibrary;
+        updateMarket();
+    }, 1000);
+
     $("#homicide").click(function() {
-        souls += soulPlus;
-        changeInventory();
-        changeMarket();
+        souls++;
+        updateMarket();
+    });
+    
+    $("#libraryPass").click(function () {
+        money -= libraryPassPrice;
+        numLibraryPass++;
+        updateMarket();
     });
 
-    $("#read").click(function() {
-        knowledge += knowledgePlus;
-        changeInventory();
-        //changeMarket();
+    $("#librarian").click(function(){
+        money -= librarianPrice;
+        numLibrarian++;
+        updateMarket();
     });
 
-    $("#toLibrary").click(function() {
-        menu = switchMenu("library");
+    $("#library").click(function(){
+        money -= libraryPrice;
+        numLibrary++;
+        updateMarket();
     });
 
-    $("#toAltar").click(function() {
-        menu = switchMenu("altar");
-        changeMarket();
-    });
-
-    $(".toMain").click(function() {
-        menu = switchMenu("main");
-    });
-
-    $("#sacrifice1").click(function() {
-        souls --;
+    $("#sell1").click(function () {
+        souls--;
         money += soulPrice;
-        changeInventory();
-        changeMarket();
+        updateMarket();
     });
 
-    $("#sacrifice10").click(function() {
+    $("#sell10").click(function () {
         souls -= 10;
         money += soulPrice * 10;
-        changeInventory();
-        changeMarket();
+        updateMarket();
     });
 
-    $("#sacrificeAll").click(function() {
+    $("#sellAll").click(function () {
         money += soulPrice * souls;
         souls = 0;
-        changeInventory();
-        changeMarket();
+        updateMarket();
     });
+
+    $("#buyAccount").click(function () {
+        money -= 50;
+        spoffify = true;
+        
+        updateMarket();
+    });
+
+    $("#produceMusic").click(function () {
+        knowledge += knowledgePlus;
+        updateMarket();
+    });
+
+    function updateMarket() {
+        changeInventory();
+        changeEcon();
+        changeSpoffify();
+    }
 
     function changeInventory() {
         $("#knowledge").html("You now have " + knowledge + " IQ.");
@@ -68,27 +98,79 @@ $(document).ready(function() {
         $("#money").html("You now have $" + money + ".");
     }
 
-    function changeMarket() {
-        
+    function changeEcon() {
+
         if (souls > 0) {
-            $("#sacrificeAll").css("display", "block");
+            $("#sellAll").removeClass('disabled');
         } else {
-            $("#sacrificeAll").css("display", "none");
+            $("#sellAll").addClass('disabled');
         }
 
         if (souls >= 1) {
-            $("#sacrifice1").css("display", "block");
+            $("#sell1").removeClass('disabled');
         } else {
-            $("#sacrifice1").css("display", "none");
+            $("#sell1").addClass('disabled');
         }
 
         if (souls >= 10) {
-            $("#sacrifice10").css("display", "block");
+            $("#sell10").removeClass('disabled');
         } else {
-            $("#sacrifice10").css("display", "none");
+            $("#sell10").addClass('disabled');
+        }
+
+        if (money >= libraryPassPrice) {
+            $("#libraryPass").removeClass('disabled');
+        } else {
+            $("#libraryPass").addClass('disabled');
+        }
+
+        if (money >= librarianPrice) {
+            $("#librarian").removeClass('disabled');
+        } else {
+            $("#librarian").addClass('disabled');
+        }
+
+        if (money >= libraryPrice) {
+            $("#library").removeClass('disabled');
+        } else {
+            $("#library").addClass('disabled');
         }
 
     }
+
+    function changeSpoffify() {
+
+        if (money >= 50 && !spoffify) {
+            $("#buyAccount").css("display", "block");
+        } else {
+            $("#buyAccount").css("display", "none");
+        }
+
+        if (spoffify) {
+            $("#produceMusic").css("display", "block");
+            $("#createSingle").css("display", "block");
+            $("#createAlbum").css("display", "block");
+            $("#buyKeyboard").css("display", "block");
+            $("#buySoftware").css("display", "block");
+            $("#buyScript").css("display", "block");
+        } else {
+            $("#produceMusic").css("display", "none");
+            $("#createSingle").css("display", "none");
+            $("#createAlbum").css("display", "none");
+            $("#buyKeyboard").css("display", "none");
+            $("#buySoftware").css("display", "none");
+            $("#buyScript").css("display", "none");
+        }
+
+    }
+
+    $("#toStudio").click(function () {
+        menu = switchMenu("studio");
+    });
+
+    $(".toMain").click(function () {
+        menu = switchMenu("main");
+    });
 
     function switchMenu(menu) {
         $(".menu").children().css("display", "none");

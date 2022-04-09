@@ -1,51 +1,68 @@
 <DOCTYPE html>
-<head>
-    <title>CookbookClicker</title>
-    <link rel="stylesheet" href="main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="app.js"></script>
+
+    <head>
+        <title>CookbookClicker</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="app.js"></script>
+
     <body>
         <div class="content">
             <div class="menu">
                 <div class="main">
-                    <button id="homicide">Homicide Cookbook</button>
-                    <button id="toLibrary">Visit Library</button>
-                    <button id="toAltar">Visit Altar</button>
+                    <div class="row">
+                        <div class="column">
+                            <button id="homicide">Homicide Cookbook</button>
+                            <button id="toStudio">Visit Studio</button>
+                        </div>
+
+                        <div class="column">
+                            <div class="sellButtons">
+                                <button id="sell1">Sell [1] Cookbook</button>
+                                <button id="sell10">Sell [10] Cookbook</button>
+                                <button id="sellAll">Sell All Cookbooks</button>
+                            </div>
+
+                            <div class="upgrades">
+                                <button id="libraryPass">Buy Library Pass [$50]</button>
+                                <button id="librarian">Buy Library Pass [$100]</button>
+                                <button id="library">Buy Library [$200]</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="library">
-                    <div class="readButtons">
-                            <button id="read">Read Cookbook</button>
-                    </div>
-
-                    <div class="upgrades">
-                        
-                    </div>
+                <div class="studio">
 
                     <div>
-                        <button class="toMain">Leave Library</button>
+                        <button class="toMain">Leave Studio</button>
                     </div>
 
+                    <div class="row">
+                        <div class="column">
+                            <div class="unlock">
+                                <button id="buyAccount">Buy Spoffify Account [$50]</button>
+                            </div>
+        
+                            <div class="actions">
+                                <button id="produceMusic">Music Ideation</button>
+                                <button id="createSingle">Write Single [25IQ]</button>
+                                <button id="createAlbum">Write Album [100IQ]</button>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="items">
+                                <button id="buyKeyboard">Buy Keyboard [$100]</button>
+                                <button id="buySoftware">Buy Music Editing Software [$200]</button>
+                                <button id="buyScript">Buy AI to Generate Music [$400]</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="altar">
-                    <div class="sacrificeButtons">
-                        <button id="sacrifice1">Sacrifice [1] Cookbook</button>
-                        <button id="sacrifice10">Sacrifice [10] Cookbook</button>
-                        <button id="sacrificeAll">Sacrifice All Cookbooks</button>
-                    </div>
-
-                    <div>
-                        <button id="blessings">Blessings</button>
-                    </div>
-
-                    <div>
-                        <button class="toMain">Leave Altar</button>
-                    </div>
-
-                </div>
             </div>
-            
+
             <div class="inventory">
                 <p id="knowledge">You now have 0 IQ.</p>
                 <p id="souls">You now have 0 souls.</p>
@@ -55,4 +72,4 @@
 
         </div>
     </body>
-</head>
+    </head>
