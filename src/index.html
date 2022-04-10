@@ -3,6 +3,7 @@
     <head>
         <title>CookbookClicker</title>
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="studio.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="app.js"></script>
 
@@ -13,35 +14,25 @@
                     <div class="row3">
                         <div class="column3" style="background-color:#272727;">
                             <div class="circle1"></div>
-                            <button id="homicide">Homicide Cookbook</button>
+                            <button id="read">Read Cookbook</button>
                             <button id="toStudio">Visit Studio</button>
-
-                            <div class="sellButtons">
-                                <button id="sell1">Sell [1] Cookbook</button>
-                                <button id="sell10">Sell [10] Cookbook</button>
-                                <button id="sellAll">Sell All Cookbooks</button>
-                            </div>
-
-                            
-
                         </div>
 
 
                         <div class="column3" style="background-color:#747474;">
                             <div class="circle2"></div>
-                            <div class="upgrades">
-                                <button id="libraryPass">Buy Library Pass [$50]</button>
-                                <button id="librarian">Buy Library Pass [$100]</button>
-                                <button id="library">Buy Library [$200]</button>
-                            </div>
                         </div>
 
                         <div class="column3" style="background-color:#272727;">
                             <div class="circle3"></div>
-                            <div class="upgrades">
-                                <button id="hitman">Buy Hitman Pass [$50 souls]</button>
-                                <button id="cult">Buy Cult [$100]</button>
-                                <button id="privateArmy">Buy Private Army [$200]</button>
+                            <div class="generators">
+                                <button id="libraryPass">Buy Library Pass</button>
+                                <button id="librarian">Buy Library Pass</button>
+                                <button id="library">Buy Library</button>
+                                <button id="publicOffice">Buy Public Office</button>
+                                <button id="cableCompany">Buy Cable Company</button>
+                                <button id="congressionalSeat">Buy Congressional Seat</button>
+                                <button id="publishingCompany">Buy Publishing Company</button>
                             </div>
                         </div>
 
@@ -49,31 +40,38 @@
                 </div>
 
                 <div class="studio">
-
-                    <div>
-                        <button class="toMain">Leave Studio</button>
-                    </div>
-
-                    <div class="row2">
-                        <div class="column2" style="background-color:#747474;">
-                            <div class="unlock">
-                                <button id="buyAccount">Buy Spoffify Account [$50]</button>
-                            </div>
-        
-                            <div class="actions">
-                                <button id="produceMusic">Music Ideation</button>
-                                <button id="createSingle">Write Single [25IQ]</button>
-                                <button id="createAlbum">Write Album [100IQ]</button>
-                            </div>
+                    <div class="row3">
+                        <div class="column3" style="background-color:#272727;">
+                            <button id="promoteMusic">Promote Music</button>
+                            <button id="toMain">Leave Studio</button>
                         </div>
 
-                        <div class="column2" style="background-color:#747474;">
+                        <div class="column3" style="background-color:#747474;">
                             <div class="items">
-                                <button id="buyKeyboard">Buy Keyboard [$100]</button>
-                                <button id="buySoftware">Buy Music Editing Software [$200]</button>
-                                <button id="buyScript">Buy AI to Generate Music [$400]</button>
+                                <button id="buySpoffify">Buy Spoffify Account</button>
+                                <button id="buyKeyboard">Buy Keyboard</button>
+                                <button id="featKanye">Buy Artist Feature</button>
+                                <button id="moreDRM">Add More DRM (can never have enough)</button>
+                                <button id="buyKeyboard">Buy Tweeter Verified</button>
+                                <button id="buyDojo">Buy Dojo</button>
+                                <button id="upgradeStage">Upgrade Stage</button>
+                                <button id="buyLabel">Buy Record Label</button>
                             </div>
                         </div>
+
+                        <div class="column3" style="background-color:#272727;">
+                            <div class="generators">
+                                <button id="produceSingle">Produce Single</button>
+                                <button id="produceAlbum">Produce Album</button>
+                                <button id="AITracks">AI Generated Tracks</button>
+                                <button id="hostConcert">Host Concert</button>
+                                <button id="beefCelebrity">Beef with Celebrity</button>
+                                <button id="box">Box Celebrity Pay-Per-View</button>
+                                <button id="headlineFestival">Headline Music Festival</button>
+                                <button id="EraDefiningTrack">ERA-Defining Track</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -81,11 +79,8 @@
 
             <div class="inventory">
                 <p id="knowledge">You now have 0 IQ.</p>
-                <p id="souls">You now have 0 souls.</p>
                 <p id="money">You now have $0.</p>
-                </p>
             </div>
-
         </div>
     </body>
     </head>

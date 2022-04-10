@@ -1,26 +1,42 @@
 $(document).ready(function () {
-    var souls = 0;
-    var soulPrice = 1;
-    var soulPlus = 1;
     var money = 0;
+    var moneyPlus = 1;
+    var moneyMul = 1;
     var knowledge = 0;
     var knowledgePlus = 1;
+    var knowledgeMul = 1;
 
-    var soulPlusLibraryPass = 1;
-    var soulPlusLibrarian = 20;
-    var soulPlusLibrary = 90;
+    var LibraryPassGen = 1;
+    var LibrarianGen = 4;
+    var LibraryGen = 8;
+    var PublicOfficeGen = 16;
+    var CableCompanyGen = 25;
+    var CongrssionalSeatGen = 36;
+    var PublishingCompanyGen = 49;
 
     var numLibraryPass = 0;
     var numLibrarian = 0;
     var numLibrary = 0;
+    var numPublicOffice = 0;
+    var numCableCompany = 0;
+    var numCongrssionalSeat = 0;
+    var numPublishingCompany = 0;
 
-    var libraryPassPrice = 0;
-    var librarianPrice = 60;
-    var libraryPrice = 720;
+    var libraryPassPrice = 1;
+    var librarianPrice = 1;
+    var libraryPrice = 1;
+    var PublicOfficePrice = 1;
+    var CableCompanyPrice = 1;
+    var CongrssionalSeatPrice = 1;
+    var PublishingCompanyPrice = 1;
 
     var LibraryPassMul = 1;
     var LibrarianMul = 1;
     var LibraryMul = 1;
+    var PublicOfficeMul = 1;
+    var CableCompanyMul = 1;
+    var CongrssionalSeatMul = 1;
+    var PublishingCompanyMul = 1;
 
     var spoffify = false;
 
@@ -29,14 +45,20 @@ $(document).ready(function () {
     updateMarket();
 
     setInterval(function(){
-        souls += soulPlusLibraryPass * numLibraryPass;
-        souls += soulPlusLibrarian * numLibrarian;
-        souls += soulPlusLibrary * numLibrary;
+        //update all generation in both studio and main area
+        
         updateMarket();
     }, 1000);
 
-    $("#homicide").click(function() {
-        souls += soulPlus;
+    $("#read").click(function() {
+        //update knowledge by value times multiplier
+        knowledge += knowledgePlus * knowledgeMul;
+        updateMarket();
+    });
+
+    $("#promoteMusic").click(function() {
+        //update money by value times multiplier
+        money += moneyPlus * moneyMul;
         updateMarket();
     });
     
@@ -48,7 +70,7 @@ $(document).ready(function () {
 
     $("#librarian").click(function(){
         money -= librarianPrice;
-        numLibrarian++;
+        numLibraryPass++;
         updateMarket();
     });
 
@@ -58,33 +80,27 @@ $(document).ready(function () {
         updateMarket();
     });
 
-    $("#sell1").click(function () {
-        souls--;
-        money += soulPrice;
+    $("#publicOffice").click(function(){
+        money -= PublicOfficePrice;
+        numPublicOffice++;
         updateMarket();
     });
 
-    $("#sell10").click(function () {
-        souls -= 10;
-        money += soulPrice * 10;
+    $("#cableCompany").click(function(){
+        money -= CableCompanyPrice;
+        numCableCompany++;
         updateMarket();
     });
 
-    $("#sellAll").click(function () {
-        money += soulPrice * souls;
-        souls = 0;
+    $("#congressionalSeat").click(function(){
+        money -= CongrssionalSeatPrice;
+        numCongrssionalSeat++;
         updateMarket();
     });
 
-    $("#buyAccount").click(function () {
-        money -= 50;
-        spoffify = true;
-        
-        updateMarket();
-    });
-
-    $("#produceMusic").click(function () {
-        knowledge += knowledgePlus;
+    $("#publishingCompany").click(function(){
+        money -= PublishingCompanyPrice;
+        numPublishingCompany++;
         updateMarket();
     });
 
@@ -93,37 +109,16 @@ $(document).ready(function () {
         updateButtonStatus();
     }
 
+    // function updatePrices() {
+
+    // }
+
     function changeInventory() {
         $("#knowledge").html("You now have " + knowledge + " IQ.");
-
-        if (souls == 1) {
-            $("#souls").html("You now have " + souls + " soul.");
-        } else {
-            $("#souls").html("You now have " + souls + " souls.");
-        }
-
         $("#money").html("You now have $" + money + ".");
     }
 
     function updateButtonStatus() {
-
-        if (souls > 0) {
-            $("#sellAll").removeClass('disabled');
-        } else {
-            $("#sellAll").addClass('disabled');
-        }
-
-        if (souls >= 1) {
-            $("#sell1").removeClass('disabled');
-        } else {
-            $("#sell1").addClass('disabled');
-        }
-
-        if (souls >= 10) {
-            $("#sell10").removeClass('disabled');
-        } else {
-            $("#sell10").addClass('disabled');
-        }
 
         if (money >= libraryPassPrice) {
             $("#libraryPass").removeClass('disabled');
@@ -143,26 +138,28 @@ $(document).ready(function () {
             $("#library").addClass('disabled');
         }
 
-        if (money >= 50 && !spoffify) {
-            $("#buyAccount").css("display", "block");
+        if (money >= PublicOfficePrice) {
+            $("#publicOffice").removeClass('disabled');
         } else {
-            $("#buyAccount").css("display", "none");
+            $("#publicOffice").addClass('disabled');
         }
 
-        if (spoffify) {
-            $("#produceMusic").css("display", "block");
-            $("#createSingle").css("display", "block");
-            $("#createAlbum").css("display", "block");
-            $("#buyKeyboard").css("display", "block");
-            $("#buySoftware").css("display", "block");
-            $("#buyScript").css("display", "block");
+        if (money >= CableCompanyPrice) {
+            $("#cableCompany").removeClass('disabled');
         } else {
-            $("#produceMusic").css("display", "none");
-            $("#createSingle").css("display", "none");
-            $("#createAlbum").css("display", "none");
-            $("#buyKeyboard").css("display", "none");
-            $("#buySoftware").css("display", "none");
-            $("#buyScript").css("display", "none");
+            $("#cableCompany").addClass('disabled');
+        }
+
+        if (money >= CongrssionalSeatPrice) {
+            $("#congressionalSeat").removeClass('disabled');
+        } else {
+            $("#congressionalSeat").addClass('disabled');
+        }
+
+        if (money >= PublishingCompanyPrice) {
+            $("#publishingCompany").removeClass('disabled');
+        } else {
+            $("#publishingCompany").addClass('disabled');
         }
     }
 
@@ -170,7 +167,7 @@ $(document).ready(function () {
         menu = switchMenu("studio");
     });
 
-    $(".toMain").click(function () {
+    $("#toMain").click(function () {
         menu = switchMenu("main");
     });
 
