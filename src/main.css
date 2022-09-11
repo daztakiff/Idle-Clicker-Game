@@ -11,6 +11,11 @@
     width: 33.333%;
 }
 
+.middleImage{
+    margin-top: 75%;
+    text-align: center;
+}
+
 .sellButtons{
     display: grid;
     grid-template-columns: repeat(3, 150px);
@@ -26,7 +31,8 @@
 .inventory {
     position: fixed;
     bottom: 0;
-    width: 100%
+    width: 100%;
+    color: white;
 }
 
 .disabled {

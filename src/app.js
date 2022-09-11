@@ -7,12 +7,12 @@ $(document).ready(function () {
     var knowledgeMul = 1;
 
     var LibraryPassGen = 1;
-    var LibrarianGen = 4;
-    var LibraryGen = 8;
-    var PublicOfficeGen = 16;
-    var CableCompanyGen = 25;
-    var CongrssionalSeatGen = 36;
-    var PublishingCompanyGen = 49;
+    var LibrarianGen = 60;
+    var LibraryGen = 520;
+    var PublicOfficeGen = 4320;
+    var CableCompanyGen = 51840;
+    var CongrssionalSeatGen = 622080;
+    var PublishingCompanyGen = 74646960;
 
     var numLibraryPass = 0;
     var numLibrarian = 0;
@@ -22,13 +22,13 @@ $(document).ready(function () {
     var numCongrssionalSeat = 0;
     var numPublishingCompany = 0;
 
-    var libraryPassPrice = 1;
-    var librarianPrice = 1;
-    var libraryPrice = 1;
-    var PublicOfficePrice = 1;
-    var CableCompanyPrice = 1;
-    var CongrssionalSeatPrice = 1;
-    var PublishingCompanyPrice = 1;
+    var libraryPassPrice = 5;
+    var librarianPrice = 60;
+    var libraryPrice = 720;
+    var publicOfficePrice = 8640;
+    var cableCompanyPrice = 103680;
+    var congrssionalSeatPrice = 1244160;
+    var publishingCompanyPrice = 14929220;
 
     var LibraryPassMul = 1;
     var LibrarianMul = 1;
@@ -38,7 +38,44 @@ $(document).ready(function () {
     var CongrssionalSeatMul = 1;
     var PublishingCompanyMul = 1;
 
+    var singleGen = 1;
+    var albumGen = 60;
+    var tracksAIGen = 520;
+    var concertGen = 4320;
+    var beefWithCelebGen = 51840;
+    var boxCelebPayToViewGen = 622080;
+    var headlineMusicFestivalGen = 74646960;
+    var eraDefiningTrackGen = 89579520
+
+    var numSingles = 0;
+    var numAlbums = 0;
+    var numTracksAI = 0;
+    var numConcerts = 0;
+    var numBeefWithCeleb = 0;
+    var numBoxCelebPayPerView = 0;
+    var numMusicFestivals = 0;
+    var numEraDefiningTracks = 0;
+
+    var singlePrice = 5;
+    var albumPrice = 60;
+    var tracksAIPrice = 720;
+    var concertPrice = 8640;
+    var beefCelebPrice = 103680;
+    var boxCelebPayToViewPrice = 1244160;
+    var musicFestivalPrice = 14929220;
+    var eraDefiningTrackPrice = 179159040;
+
+    var singleMul = 1;
+    var albumMul = 1;
+    var tracksAIMul = 1;
+    var concertMul = 1;
+    var beefCelebMul = 1;
+    var boxCelebPayToViewMul = 1;
+    var musicFestivalMul = 1;
+    var eraDefiningTrackMul = 1;
+
     var spoffify = false;
+    var spoffifyPrice = 20;
 
     var menu = switchMenu("main");
 
@@ -47,6 +84,15 @@ $(document).ready(function () {
     setInterval(function(){
         //update all generation in both studio and main area
         
+        knowledge += (numLibraryPass * LibraryPassGen) + (numLibrarian * LibrarianGen) + 
+                    (numLibrary * LibraryGen) + (numPublicOffice * PublicOfficeGen) + 
+                    (numCableCompany * CableCompanyGen) + (numCongrssionalSeat * CongrssionalSeatGen) +
+                    (numPublishingCompany * PublishingCompanyGen);
+
+        money += (numSingles * singleGen) + (numAlbums * albumGen) + 
+        (numTracksAI * tracksAIGen)+ (numConcerts * concertGen) + 
+        (numBeefWithCeleb * beefWithCelebGen) + (numBoxCelebPayPerView * boxCelebPayToViewGen) +
+        (numMusicFestivals * headlineMusicFestivalGen) + (numEraDefiningTracks * eraDefiningTrackGen);
         updateMarket();
     }, 1000);
 
@@ -59,6 +105,12 @@ $(document).ready(function () {
     $("#promoteMusic").click(function() {
         //update money by value times multiplier
         money += moneyPlus * moneyMul;
+        updateMarket();
+    });
+
+    $("#buySpoffify").click(function(){
+        money -= spoffifyPrice;
+        spoffify = true;
         updateMarket();
     });
     
@@ -81,26 +133,74 @@ $(document).ready(function () {
     });
 
     $("#publicOffice").click(function(){
-        money -= PublicOfficePrice;
+        money -= publicOfficePrice;
         numPublicOffice++;
         updateMarket();
     });
 
     $("#cableCompany").click(function(){
-        money -= CableCompanyPrice;
+        money -= cableCompanyPrice;
         numCableCompany++;
         updateMarket();
     });
 
     $("#congressionalSeat").click(function(){
-        money -= CongrssionalSeatPrice;
+        money -= congrssionalSeatPrice;
         numCongrssionalSeat++;
         updateMarket();
     });
 
     $("#publishingCompany").click(function(){
-        money -= PublishingCompanyPrice;
+        money -= publishingCompanyPrice;
         numPublishingCompany++;
+        updateMarket();
+    });
+
+    $("#produceSingle").click(function () {
+        knowledge -= singlePrice;
+        numSingles++;
+        updateMarket();
+    });
+
+    $("#produceAlbum").click(function () {
+        knowledge -= albumPrice;
+        numAlbums++;
+        updateMarket();
+    });
+
+    $("#AITracks").click(function(){
+        knowledge -= tracksAIPrice;
+        numTracksAI++;
+        updateMarket();
+    });
+
+    $("#hostConcert").click(function(){
+        knowledge -= concertPrice;
+        numConcerts++;
+        updateMarket();
+    });
+
+    $("#beefCelebrity").click(function(){
+        knowledge -= beefCelebPrice;
+        numBeefWithCeleb++;
+        updateMarket();
+    });
+
+    $("#box").click(function(){
+        knowledge -= boxCelebPayToViewPrice;
+        numBoxCelebPayPerView++;
+        updateMarket();
+    });
+
+    $("#headlineFestival").click(function(){
+        knowledge -= musicFestivalPrice;
+        numMusicFestivals++;
+        updateMarket();
+    });
+
+    $("#EraDefiningTrack").click(function(){
+        knowledge -= eraDefiningTrackPrice;
+        numEraDefiningTracks++;
         updateMarket();
     });
 
@@ -109,16 +209,18 @@ $(document).ready(function () {
         updateButtonStatus();
     }
 
-    // function updatePrices() {
-
-    // }
-
     function changeInventory() {
         $("#knowledge").html("You now have " + knowledge + " IQ.");
         $("#money").html("You now have $" + money + ".");
     }
 
     function updateButtonStatus() {
+
+        if (money >= spoffifyPrice && !spoffify) {
+            $("#buySpoffify").removeClass('disabled');
+        } else {
+            $("#buySpoffify").addClass('disabled');
+        }
 
         if (money >= libraryPassPrice) {
             $("#libraryPass").removeClass('disabled');
@@ -138,28 +240,76 @@ $(document).ready(function () {
             $("#library").addClass('disabled');
         }
 
-        if (money >= PublicOfficePrice) {
+        if (money >= publicOfficePrice) {
             $("#publicOffice").removeClass('disabled');
         } else {
             $("#publicOffice").addClass('disabled');
         }
 
-        if (money >= CableCompanyPrice) {
+        if (money >= cableCompanyPrice) {
             $("#cableCompany").removeClass('disabled');
         } else {
             $("#cableCompany").addClass('disabled');
         }
 
-        if (money >= CongrssionalSeatPrice) {
+        if (money >= congrssionalSeatPrice) {
             $("#congressionalSeat").removeClass('disabled');
         } else {
             $("#congressionalSeat").addClass('disabled');
         }
 
-        if (money >= PublishingCompanyPrice) {
+        if (money >= publishingCompanyPrice) {
             $("#publishingCompany").removeClass('disabled');
         } else {
             $("#publishingCompany").addClass('disabled');
+        }
+
+        if (knowledge >= singlePrice && spoffify) {
+            $("#produceSingle").removeClass('disabled');
+        } else {
+            $("#produceSingle").addClass('disabled');
+        }
+
+        if (knowledge >= albumPrice && spoffify) {
+            $("#produceAlbum").removeClass('disabled');
+        } else {
+            $("#produceAlbum").addClass('disabled');
+        }
+
+        if (knowledge >= tracksAIPrice && spoffify) {
+            $("#AITracks").removeClass('disabled');
+        } else {
+            $("#AITracks").addClass('disabled');
+        }
+
+        if (knowledge >= concertPrice && spoffify) {
+            $("#hostConcert").removeClass('disabled');
+        } else {
+            $("#hostConcert").addClass('disabled');
+        }
+
+        if (knowledge >= beefCelebPrice && spoffify) {
+            $("#beefCelebrity").removeClass('disabled');
+        } else {
+            $("#beefCelebrity").addClass('disabled');
+        }
+
+        if (knowledge >= boxCelebPayToViewPrice && spoffify) {
+            $("#box").removeClass('disabled');
+        } else {
+            $("#box").addClass('disabled');
+        }
+
+        if (knowledge >= musicFestivalPrice && spoffify) {
+            $("#headlineFestival").removeClass('disabled');
+        } else {
+            $("#headlineFestival").addClass('disabled');
+        }
+
+        if (knowledge >= eraDefiningTrackPrice && spoffify) {
+            $("#EraDefiningTrack").removeClass('disabled');
+        } else {
+            $("#EraDefiningTrack").addClass('disabled');
         }
     }
 
