@@ -83,6 +83,19 @@ $(document).ready(function () {
     loadFromLocalStorage();
 
     setInterval(function(){
+        const saveState = {
+        
+            buildingsKnowledge: [numLibraryPass, numLibrarian, numLibrary, numPublicOffice, numCableCompany, numCongrssionalSeat, numPublishingCompany],
+            buildingsMoney: [numSingles, numAlbums, numTracksAI, numConcerts, numBeefWithCeleb, numBoxCelebPayPerView, numMusicFestivals, numEraDefiningTracks],
+            hasSpofiffy: spoffify,
+            inventory: [money, knowledge]
+        };
+    
+        const saveStateString = JSON.stringify(saveState);
+        localStorage.setItem('saveState', saveStateString);
+    }, 5000);
+    
+    setInterval(function(){
         //update all generation in both studio and main area
         
         knowledge += (numLibraryPass * LibraryPassGen) + (numLibrarian * LibrarianGen) + 
@@ -101,19 +114,6 @@ $(document).ready(function () {
         //update knowledge by value times multiplier
         knowledge += knowledgePlus * knowledgeMul;
         updateMarket();
-    });
-
-    $("#save").click(function() {
-        const saveState = {
-        
-            buildingsKnowledge: [numLibraryPass, numLibrarian, numLibrary, numPublicOffice, numCableCompany, numCongrssionalSeat, numPublishingCompany],
-            buildingsMoney: [numSingles, numAlbums, numTracksAI, numConcerts, numBeefWithCeleb, numBoxCelebPayPerView, numMusicFestivals, numEraDefiningTracks],
-            hasSpofiffy: spoffify,
-            inventory: [money, knowledge]
-        };
-
-        const saveStateString = JSON.stringify(saveState);
-        localStorage.setItem('saveState', saveStateString);
     });
 
     $("#promoteMusic").click(function() {
