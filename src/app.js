@@ -346,25 +346,27 @@ $(document).ready(function () {
         const loadSaveStateString = localStorage.getItem('saveState');
         const loadSaveState = JSON.parse(loadSaveStateString);
 
-        spoffify = loadSaveState.spoffify;
-        money = loadSaveState.inventory[0];
-        knowledge = loadSaveState.inventory[1];
-        
-        numLibraryPass = loadSaveState.buildingsKnowledge[0];
-        numLibrarian = loadSaveState.buildingsKnowledge[1];
-        numLibrary = loadSaveState.buildingsKnowledge[2];
-        numPublicOffice = loadSaveState.buildingsKnowledge[3];
-        numCableCompany = loadSaveState.buildingsKnowledge[4];
-        numCongrssionalSeat = loadSaveState.buildingsKnowledge[5];
-        numPublishingCompany = loadSaveState.buildingsKnowledge[6];
+        if(loadSaveState) {
+            spoffify = loadSaveState.spoffify;
+            money = loadSaveState.inventory[0];
+            knowledge = loadSaveState.inventory[1];
+            
+            numLibraryPass = loadSaveState.buildingsKnowledge[0];
+            numLibrarian = loadSaveState.buildingsKnowledge[1];
+            numLibrary = loadSaveState.buildingsKnowledge[2];
+            numPublicOffice = loadSaveState.buildingsKnowledge[3];
+            numCableCompany = loadSaveState.buildingsKnowledge[4];
+            numCongrssionalSeat = loadSaveState.buildingsKnowledge[5];
+            numPublishingCompany = loadSaveState.buildingsKnowledge[6];
 
-        numSingles = loadSaveState.buildingsMoney[0];
-        numAlbums = loadSaveState.buildingsMoney[1];
-        numTracksAI = loadSaveState.buildingsMoney[2];
-        numConcerts = loadSaveState.buildingsMoney[3];
-        numBeefWithCeleb = loadSaveState.buildingsMoney[4];
-        numBoxCelebPayPerView = loadSaveState.buildingsMoney[5];
-        numMusicFestivals = loadSaveState.buildingsMoney[6];
-        numEraDefiningTracks = loadSaveState.buildingsMoney[7];
+            numSingles = loadSaveState.buildingsMoney[0];
+            numAlbums = loadSaveState.buildingsMoney[1];
+            numTracksAI = loadSaveState.buildingsMoney[2];
+            numConcerts = loadSaveState.buildingsMoney[3];
+            numBeefWithCeleb = loadSaveState.buildingsMoney[4];
+            numBoxCelebPayPerView = loadSaveState.buildingsMoney[5];
+            numMusicFestivals = loadSaveState.buildingsMoney[6];
+            numEraDefiningTracks = loadSaveState.buildingsMoney[7];
+        }
     };
 });
