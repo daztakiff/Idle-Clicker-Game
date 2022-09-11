@@ -80,6 +80,7 @@ $(document).ready(function () {
     var menu = switchMenu("main");
 
     updateMarket();
+    loadSaveState();
 
     setInterval(function(){
         //update all generation in both studio and main area
@@ -94,6 +95,21 @@ $(document).ready(function () {
         (numBeefWithCeleb * beefWithCelebGen) + (numBoxCelebPayPerView * boxCelebPayToViewGen) +
         (numMusicFestivals * headlineMusicFestivalGen) + (numEraDefiningTracks * eraDefiningTrackGen);
         updateMarket();
+    }, 1000);
+
+    setInterval(function(){
+
+        const saveState = {
+        
+            buildingsKnowledge: [numLibraryPass, numLibrarian, numLibrary, numPublicOffice, numCableCompany, numCongrssionalSeat, numPublishingCompany],
+            buildingsMoney: [numSingles, numAlbums, numTracksAI, numConcerts, numBeefWithCeleb, numBoxCelebPayPerView, numMusicFestivals, numEraDefiningTracks],
+            hasSpofiffy: spoffify,
+            inventory: [money, knowledge]
+        };
+    
+        const saveStateString = JSON.stringify(saveState);
+        localStorage.setItem('saveState', saveStateString);
+
     }, 1000);
 
     $("#read").click(function() {
@@ -326,4 +342,34 @@ $(document).ready(function () {
         $("." + menu).css("display", "block");
         return menu;
     }
+
+    function loadSaveState(){
+    
+        if (localStorage.getItem('saveState') === null) {
+            const loadSaveStateString = localStorage.getItem('saveState');
+            const loadSaveState = JSON.parse(loadSaveStateString);
+
+            spoffify = loadSaveState.hasSpofiffy;
+            money = loadSaveState.inventory.money
+            knowledge = loadSaveState.inventory.knowledge
+            
+            numLibraryPass = loadSaveState.buildingsKnowledge.numLibraryPass
+            numLibrarian = loadSaveState.buildingsKnowledge.numLibrarian
+            numLibrary = loadSaveState.buildingsKnowledge.numLibrary
+            numPublicOffice = loadSaveState.buildingsKnowledge.numPublicOffice
+            numCableCompany = loadSaveState.buildingsKnowledge.numCableCompany
+            numCongrssionalSeat = loadSaveState.buildingsKnowledge.numCongrssionalSeat
+            numPublishingCompany = loadSaveState.buildingsKnowledge.numPublishingCompany
+
+            numSingles = loadSaveState.buildingsMoney.numSingles
+            numAlbums = loadSaveState.buildingsMoney.numAlbums
+            numTracksAI = loadSaveState.buildingsMoney.numTracksAI
+            numConcerts = loadSaveState.buildingsMoney.numConcerts
+            numBeefWithCeleb = loadSaveState.buildingsMoney.numBeefWithCeleb
+            numBoxCelebPayPerView = loadSaveState.buildingsMoney.numBoxCelebPayPerView
+            numMusicFestivals = loadSaveState.buildingsMoney.numMusicFestivals
+            numEraDefiningTracks = loadSaveState.buildingsMoney.numEraDefiningTracks
+        }
+    
+    };
 });
