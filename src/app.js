@@ -80,7 +80,7 @@ $(document).ready(function () {
     var menu = switchMenu("main");
 
     updateMarket();
-    // loadSaveState();
+    loadFromLocalStorage();
 
     setInterval(function(){
         //update all generation in both studio and main area
@@ -97,25 +97,23 @@ $(document).ready(function () {
         updateMarket();
     }, 1000);
 
-    // setInterval(function(){
-
-    //     const saveState = {
-        
-    //         buildingsKnowledge: [numLibraryPass, numLibrarian, numLibrary, numPublicOffice, numCableCompany, numCongrssionalSeat, numPublishingCompany],
-    //         buildingsMoney: [numSingles, numAlbums, numTracksAI, numConcerts, numBeefWithCeleb, numBoxCelebPayPerView, numMusicFestivals, numEraDefiningTracks],
-    //         hasSpofiffy: spoffify,
-    //         inventory: [money, knowledge]
-    //     };
-    
-    //     const saveStateString = JSON.stringify(saveState);
-    //     localStorage.setItem('saveState', saveStateString);
-
-    // }, 10000);
-
     $("#read").click(function() {
         //update knowledge by value times multiplier
         knowledge += knowledgePlus * knowledgeMul;
         updateMarket();
+    });
+
+    $("#save").click(function() {
+        const saveState = {
+        
+            buildingsKnowledge: [numLibraryPass, numLibrarian, numLibrary, numPublicOffice, numCableCompany, numCongrssionalSeat, numPublishingCompany],
+            buildingsMoney: [numSingles, numAlbums, numTracksAI, numConcerts, numBeefWithCeleb, numBoxCelebPayPerView, numMusicFestivals, numEraDefiningTracks],
+            hasSpofiffy: spoffify,
+            inventory: [money, knowledge]
+        };
+
+        const saveStateString = JSON.stringify(saveState);
+        localStorage.setItem('saveState', saveStateString);
     });
 
     $("#promoteMusic").click(function() {
@@ -223,12 +221,12 @@ $(document).ready(function () {
     function updateMarket() {
         changeInventory();
         updateButtonStatus();
-    }
+    };
 
     function changeInventory() {
         $("#knowledge").html("You now have " + knowledge + " IQ.");
         $("#money").html("You now have $" + money + ".");
-    }
+    };
 
     function updateButtonStatus() {
 
@@ -327,7 +325,7 @@ $(document).ready(function () {
         } else {
             $("#EraDefiningTrack").addClass('disabled');
         }
-    }
+    };
 
     $("#toStudio").click(function () {
         menu = switchMenu("studio");
@@ -341,35 +339,32 @@ $(document).ready(function () {
         $(".menu").children().css("display", "none");
         $("." + menu).css("display", "block");
         return menu;
-    }
+    };
 
-    // function loadSaveState(){
+    function loadFromLocalStorage(){
     
-    //     if (localStorage.getItem('saveState') === null) {
-    //         const loadSaveStateString = localStorage.getItem('saveState');
-    //         const loadSaveState = JSON.parse(loadSaveStateString);
+        const loadSaveStateString = localStorage.getItem('saveState');
+        const loadSaveState = JSON.parse(loadSaveStateString);
 
-    //         spoffify = loadSaveState.hasSpofiffy;
-    //         money = loadSaveState.inventory.money
-    //         knowledge = loadSaveState.inventory.knowledge
-            
-    //         numLibraryPass = loadSaveState.buildingsKnowledge.numLibraryPass
-    //         numLibrarian = loadSaveState.buildingsKnowledge.numLibrarian
-    //         numLibrary = loadSaveState.buildingsKnowledge.numLibrary
-    //         numPublicOffice = loadSaveState.buildingsKnowledge.numPublicOffice
-    //         numCableCompany = loadSaveState.buildingsKnowledge.numCableCompany
-    //         numCongrssionalSeat = loadSaveState.buildingsKnowledge.numCongrssionalSeat
-    //         numPublishingCompany = loadSaveState.buildingsKnowledge.numPublishingCompany
+        spoffify = loadSaveState.spoffify;
+        money = loadSaveState.inventory[0];
+        knowledge = loadSaveState.inventory[1];
+        
+        numLibraryPass = loadSaveState.buildingsKnowledge[0];
+        numLibrarian = loadSaveState.buildingsKnowledge[1];
+        numLibrary = loadSaveState.buildingsKnowledge[2];
+        numPublicOffice = loadSaveState.buildingsKnowledge[3];
+        numCableCompany = loadSaveState.buildingsKnowledge[4];
+        numCongrssionalSeat = loadSaveState.buildingsKnowledge[5];
+        numPublishingCompany = loadSaveState.buildingsKnowledge[6];
 
-    //         numSingles = loadSaveState.buildingsMoney.numSingles
-    //         numAlbums = loadSaveState.buildingsMoney.numAlbums
-    //         numTracksAI = loadSaveState.buildingsMoney.numTracksAI
-    //         numConcerts = loadSaveState.buildingsMoney.numConcerts
-    //         numBeefWithCeleb = loadSaveState.buildingsMoney.numBeefWithCeleb
-    //         numBoxCelebPayPerView = loadSaveState.buildingsMoney.numBoxCelebPayPerView
-    //         numMusicFestivals = loadSaveState.buildingsMoney.numMusicFestivals
-    //         numEraDefiningTracks = loadSaveState.buildingsMoney.numEraDefiningTracks
-    //     }
-    
-    // };
+        numSingles = loadSaveState.buildingsMoney[0];
+        numAlbums = loadSaveState.buildingsMoney[1];
+        numTracksAI = loadSaveState.buildingsMoney[2];
+        numConcerts = loadSaveState.buildingsMoney[3];
+        numBeefWithCeleb = loadSaveState.buildingsMoney[4];
+        numBoxCelebPayPerView = loadSaveState.buildingsMoney[5];
+        numMusicFestivals = loadSaveState.buildingsMoney[6];
+        numEraDefiningTracks = loadSaveState.buildingsMoney[7];
+    };
 });
