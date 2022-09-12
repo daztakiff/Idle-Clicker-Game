@@ -1,5 +1,5 @@
 # CookbookClicker
-Idle clicker game for a friend
+CookBook Clicker (Idle clicker game for a friend)
 
 JQuery endeavor, css fun and messing with localstorage
 
